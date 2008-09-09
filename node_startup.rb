@@ -16,15 +16,19 @@ require 'zip/zipfilesystem'
 require 'fileutils'
 require 'logger'
 
+# load order is important
+require 'lib/constants'
+require 'lib/utilities'
+
 require 'lib/aws'
 require 'lib/aws_parameters'
-require 'lib/constants'
-require 'lib/omssa'
-require 'lib/packer'
+
 require 'lib/searcher'
+require 'lib/omssa'
 require 'lib/tandem'
+
 require 'lib/unpacker'
-require 'lib/utilities'
+require 'lib/packer'
 require 'lib/watcher'
 require 'lib/worker'
 
@@ -48,7 +52,7 @@ require 'lib/worker'
   BUCKET_NAME = "#{AWS_ACCESS}-pipeline"
   NODE_QUEUE_NAME = "#{AWS_ACCESS}-node"
   HEAD_QUEUE_NAME = "#{AWS_ACCESS}-head"
-  DOWNLOAD_QUEUE_NAME = "#{AWS_ACCESS}-download"
+  FINISHED_QUEUE_NAME = "#{AWS_ACCESS}-finished"
   CREATED_CHUNK_QUEUE_NAME = "#{AWS_ACCESS}-created-chunk"
 
   AWS = Aws.new
