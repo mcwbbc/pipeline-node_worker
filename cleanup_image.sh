@@ -14,3 +14,4 @@ rm -rf /var/log/messages
 rm -rf /var/log/syslog
 rm -rf /var/log/user.log
 rm -rf /root/.bash_history
+rm -rf /usr/local/src/*
