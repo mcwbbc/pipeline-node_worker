@@ -32,6 +32,7 @@ require 'lib/packer'
 require 'lib/watcher'
 require 'lib/worker'
 
+
   LOGGER = Logger.new("/pipeline/pipeline.log")
   aws = AwsParameters.new
   config = aws.run
@@ -56,6 +57,11 @@ require 'lib/worker'
   CREATED_CHUNK_QUEUE_NAME = "#{AWS_ACCESS}-created-chunk"
 
   AWS = Aws.new
+
+  pid_file = File.join('/pipeline', 'node.pid')
+  File.open(pid_file,"w") do |file|
+    file.puts($$)
+  end
 
   @watcher = Watcher.new
   @watcher.run
