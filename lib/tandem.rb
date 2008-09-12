@@ -24,8 +24,8 @@ XML
   # simple function to run omssa from the command line with a few basic parameters
   def run
     build_xml
-    logger.debug {"Running: #{TANDEM_PATH}/tandem.exe #{PIPELINE_TMP}"}
-    system "#{TANDEM_PATH}/tandem.exe #{PIPELINE_TMP}"
+    logger.debug {"Running: #{TANDEM_PATH}/tandem.exe #{INPUT_XML}"}
+    system "#{TANDEM_PATH}/tandem.exe #{INPUT_XML}"
   end
 
 end
