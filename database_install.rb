@@ -23,14 +23,7 @@ require 'lib/utilities'
 require 'lib/aws'
 require 'lib/aws_parameters'
 
-require 'lib/searcher'
-require 'lib/omssa'
-require 'lib/tandem'
-
-require 'lib/unpacker'
-require 'lib/packer'
-require 'lib/watcher'
-require 'lib/worker'
+require 'lib/database_installer'
 
   aws = AwsParameters.new
   config = aws.run

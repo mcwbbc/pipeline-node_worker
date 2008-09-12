@@ -61,7 +61,7 @@ class Packer
     hash = {:type => DOWNLOAD, :job_id => message[:job_id], :bucket_name => BUCKET_NAME}
     logger.debug {"Sending HEAD message: #{hash.to_yaml}"}
     head_success = AWS.send_head_message(hash.to_yaml) unless DEBUG
-    hash[:type] = FINSHED
+    hash[:type] = FINISHED
     finished_success = AWS.send_finished_message(hash.to_yaml) unless DEBUG
   end
 
