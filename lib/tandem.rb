@@ -1,6 +1,6 @@
 class Tandem < Searcher
 
-INPUT_XML = "#{TANDEM_PATH}/input.xml"
+INPUT_XML = "#{PIPELINE_TMP}/input.xml"
 
 INPUT = <<XML
 <?xml version="1.0"?>
@@ -24,8 +24,8 @@ XML
   # simple function to run omssa from the command line with a few basic parameters
   def run
     build_xml
-    logger.debug {"Running: #{TANDEM_PATH}/tandem.exe #{INPUT_XML}"}
-    system "#{TANDEM_PATH}/tandem.exe #{INPUT_XML}"
+    logger.debug {"Running: #{TANDEM_PATH}/tandem.exe #{PIPELINE_TMP}"}
+    system "#{TANDEM_PATH}/tandem.exe #{PIPELINE_TMP}"
   end
 
 end
