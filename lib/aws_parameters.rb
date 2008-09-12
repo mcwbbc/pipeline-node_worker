@@ -1,8 +1,6 @@
 class AwsParameters
   
-  #AMAZON_DATA_URL = "169.254.169.254"
-  AMAZON_DATA_URL = "amazon-user-data.local"
-
+  AMAZON_DATA_URL = "169.254.169.254"
 
   DEFAULTS = {
       'watchers' => 1
