@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<bioml label="x! taxon-to-file matching list">
+<taxon label="human">
+  <file format="peptide" URL="/pipeline/dbs/Uniprot_human_54_0.fasta" />
+</taxon>
+<taxon label="rodent">
+  <file format="peptide" URL="/pipeline/dbs/Uniprot_rodent_54_0.fasta" />
+</taxon>
+<taxon label="complete">
+  <file format="peptide" URL="/pipeline/dbs/Uniprot_complete_49_1.fasta" />
+</taxon>
+<taxon label="mammals">
+  <file format="peptide" URL="/pipeline/dbs/Uniprot_all_mammals_49.1.fasta" />
+</taxon>
+<taxon label="yeast">
+  <file format="peptide" URL="/pipeline/dbs/s_cerevisiae.fasta" />
+</taxon>
+<taxon label="ecoli">
+  <file format="peptide" URL="/pipeline/dbs/ecoli_k12.fasta" />
+</taxon>
+</bioml>

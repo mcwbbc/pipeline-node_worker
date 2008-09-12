@@ -57,10 +57,6 @@ require 'lib/worker'
 
   AWS = Aws.new
 
-  hash = {:type => LAUNCH, :instance_id => INSTANCE_ID, :instance_type => INSTANCE_TYPE, :booted_at => Time.now.to_f}
-  LOGGER.debug { "Sending alive message: #{hash.to_yaml}" }
-  AWS.send_head_message(hash.to_yaml) #let the master server know we're alive and kicking
-
   @watcher = Watcher.new
   @watcher.run
 
