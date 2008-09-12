@@ -14,7 +14,7 @@ class Packer
       download_files
       zip_files
       send_file(local_zipfile) # this will upload and send the messages, since we can have other nodes start on them
-      send_job_message(DOWNLOAD)
+      send_job_message
     end
     ensure
       cleanup_pack
@@ -57,10 +57,12 @@ class Packer
     end
   end
 
-  def send_job_message(type)
-    hash = {:type => type, :job_id => message[:job_id], :bucket_name => BUCKET_NAME}
+  def send_job_message
+    hash = {:type => DOWNLOAD, :job_id => message[:job_id], :bucket_name => BUCKET_NAME}
     logger.debug {"Sending HEAD message: #{hash.to_yaml}"}
     head_success = AWS.send_head_message(hash.to_yaml) unless DEBUG
+    hash[:type] = FINSHED
+    finished_success = AWS.send_finished_message(hash.to_yaml) unless DEBUG
   end
 
   def send_file(file)
