@@ -1,24 +1,3 @@
-  INSTANCES_ARRAY = [ ['Small', 'm1.small'],
-                      ['Medium', 'c1.medium'],
-                      ['XX-Large', 'c1.xlarge']
-                    ]
-
-  INSTANCES_HASH = INSTANCES_ARRAY.inject({}) do |result, element|
-    result[element.last] = element.first
-    result
-  end
-
-  SEARCHER_ARRAY = [ ['OMSSA','omssa'],
-                     ['Tandem','tandem']
-                   ]
-
-  SEARCHER_HASH = SEARCHER_ARRAY.inject({}) do |result, element|
-     result[element.last] = element.first
-     result
-   end
-
-  DEBUG = false
-
   PIPELINE = '/pipeline'
 
   PIPELINE_TMP = "/pipeline/tmp-#{$$}"
@@ -44,6 +23,4 @@
   FINISHED = "FINISHED"
   NEWJOB = "NEWJOB"
 
-  HOUR = 3600
-  FIFTYFIVE = 3300
   SEARCHERS = ['omssa', 'tandem']

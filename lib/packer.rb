@@ -60,14 +60,13 @@ class Packer
   def send_job_message
     hash = {:type => DOWNLOAD, :job_id => message[:job_id], :bucket_name => BUCKET_NAME}
     logger.debug {"Sending HEAD message: #{hash.to_yaml}"}
-    head_success = AWS.send_head_message(hash.to_yaml) unless DEBUG
+    head_success = AWS.send_head_message(hash.to_yaml)
     hash[:type] = FINISHED
-    finished_success = AWS.send_finished_message(hash.to_yaml) unless DEBUG
+    finished_success = AWS.send_finished_message(hash.to_yaml)
   end
 
   def send_file(file)
-    success = AWS.put_object(bucket_object(file), File.open(file), {"x-amz-acl" => "public-read"}) unless DEBUG
-    DEBUG ? true : success
+    success = AWS.put_object(bucket_object(file), File.open(file), {"x-amz-acl" => "public-read"})
   end
 
   def bucket_object(file_path)

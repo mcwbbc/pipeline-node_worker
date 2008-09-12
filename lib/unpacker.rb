@@ -101,7 +101,7 @@ class Unpacker
   def send_job_message(type)
     hash = {:type => type, :job_id => message[:job_id]}
     logger.debug {"Sending HEAD message: #{hash.to_yaml}"}
-    head_success = AWS.send_head_message(hash.to_yaml) unless DEBUG
+    head_success = AWS.send_head_message(hash.to_yaml)
   end
 
   def upload_data
@@ -118,8 +118,7 @@ class Unpacker
   end
 
   def send_file(file)
-    success = AWS.put_object(bucket_object(file), File.open(file)) unless DEBUG
-    DEBUG ? true : success
+    success = AWS.put_object(bucket_object(file), File.open(file))
   end
 
   def send_messages(file)
@@ -129,7 +128,7 @@ class Unpacker
 
     created = {:type => CREATED, :chunk_count => mgf_filenames.size, :bytes => bytes, :sendtime => sendtime, :chunk_key => chunk_key, :job_id => message[:job_id], :filename => bucket_object(file), :parameter_filename => bucket_object(PARAMETER_FILENAME), :bucket_name => message[:bucket_name], :searcher => message[:searcher]}
     logger.debug {"Sending HEAD message: #{created.to_yaml}"}
-    AWS.send_created_chunk_message(created.to_yaml) unless DEBUG
+    AWS.send_created_chunk_message(created.to_yaml)
   end
 
   def bucket_object(file_path)
