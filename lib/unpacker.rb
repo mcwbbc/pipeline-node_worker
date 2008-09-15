@@ -78,11 +78,11 @@ class Unpacker
     text = ""
     outfile = ""
     File.open(mgf_filename).each do |line|
-      outfile = "#{mgf_dir}/#{input_name}-#{filecount}.mgf"
+      filenumber = "%04d" % filecount
+      outfile = "#{mgf_dir}/#{input_name}-#{filenumber}.mgf"
       text << line
       ions+=1 if line =~ /END IONS/
       if (ions == 200)
-        puts outfile
         File.open(outfile, 'w') do |out|
           out.write(text)
         end
@@ -91,11 +91,9 @@ class Unpacker
         text = ""
       end
     end
-    puts outfile
     File.open(outfile, 'w') do |out|
       out.write(text)
     end
-
   end
 
   def send_job_message(type)
