@@ -9,24 +9,39 @@
 
 RETVAL=0
 
+if ! [ $2 ]
+then
+node_id=1
+else
+node_id=$2
+fi 
+
+start() {
+cd /pipeline/bin && /pipeline/bin/node_startup.rb $node_id & >> /pipeline/crash.log
+}
+
+stop() {
+kill -9 `cat /pipeline/node-$node_id.pid`
+rm /pipeline/node-$node_id.pid
+}
+
 case "$1" in
     start)
-      cd /pipeline/bin && /pipeline/bin/node_startup.rb & >> /pipeline/crash.log
+      start
       RETVAL=$?
   ;;
     stop)
-      kill -9 `cat /pipeline/node.pid`
-      rm /pipeline/node.pid
+      stop
       RETVAL=$?
   ;;
     restart)
-    kill -9 `cat /pipeline/node.pid`
-    rm /pipeline/node.pid
-      cd /pipeline/bin && /pipeline/bin/node_startup.rb & >> /pipeline/crash.log
+      stop
+      sleep 2
+      start
       RETVAL=$?
   ;;
     *)
-      echo "Usage: node {start|stop|restart}"
+      echo "Usage: node {start|stop|restart} node_number"
       exit 1
   ;;
 esac      

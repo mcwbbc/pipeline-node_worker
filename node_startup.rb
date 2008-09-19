@@ -1,9 +1,7 @@
 #!/usr/bin/env ruby
 
-# this script will run a loader
-# which will load a number of watcher instances, which in turn will launch workers
-# to process the messages off the queue.
-# this will allow multiple watchers to be launched per machine, instead of a single
+# this script launches a watcher with listens to the node queue to process messages
+# we launch it with an id, so we can run more than one per server
 
 require 'rubygems'
 require 'net/http'
@@ -33,7 +31,10 @@ require 'lib/watcher'
 require 'lib/worker'
 
 
+  node_number = ARGV[0].blank? ? 1 : ARGV[0]
+
   LOGGER = Logger.new("/pipeline/pipeline.log")
+  LOGGER.debug { "Launching node-#{node_number} with pid #{$$}" }
   aws = AwsParameters.new
   config = aws.run
 
@@ -58,7 +59,7 @@ require 'lib/worker'
 
   AWS = Aws.new
 
-  pid_file = File.join('/pipeline', 'node.pid')
+  pid_file = File.join('/pipeline', "node-#{node_number}.pid")
   File.open(pid_file,"w") do |file|
     file.puts($$)
   end

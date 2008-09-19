@@ -1,7 +1,4 @@
-#
-# node control file
-#
+check process node with pidfile /pipeline/node-1.pid
+   start program = "/etc/init.d/node start 1"
+   stop  program = "/etc/init.d/node stop 1"
 
-check process node with pidfile /pipeline/node.pid
-   start program = "/etc/init.d/node start"
-   stop  program = "/etc/init.d/node stop"
