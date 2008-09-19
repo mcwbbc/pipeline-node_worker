@@ -27,7 +27,7 @@ LOGGER = Logger.new("/pipeline/pipeline.log")
 aws = AwsParameters.new
 config = aws.run
 
-workers = config['workers'].blank? ? 1 : config['workers']
+workers = config['workers'].blank? ? 1 : config['workers'].to_i
 
 LOGGER.debug { "Creating monitrc files for #{workers} workers" }
 
