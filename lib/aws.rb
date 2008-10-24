@@ -46,10 +46,6 @@ class Aws
     created_chunk_queue.send_message(message)
   end
 
-  def send_finished_message(message)
-    finished_queue.send_message(message)
-  end
-
   def create_bucket
     # create the storage bucket
     @bucket ||= s3i.create_bucket(BUCKET_NAME)
@@ -65,10 +61,6 @@ class Aws
 
   def created_chunk_queue
     @created_chunk_queue ||= sqs.queue(CREATED_CHUNK_QUEUE_NAME, true)
-  end
-
-  def finished_queue
-    @finished_queue ||= sqs.queue(FINISHED_QUEUE_NAME, true)
   end
 
   def ec2

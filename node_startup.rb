@@ -54,7 +54,6 @@ require 'lib/worker'
   BUCKET_NAME = "#{AWS_ACCESS}-pipeline"
   NODE_QUEUE_NAME = "#{AWS_ACCESS}-node"
   HEAD_QUEUE_NAME = "#{AWS_ACCESS}-head"
-  FINISHED_QUEUE_NAME = "#{AWS_ACCESS}-finished"
   CREATED_CHUNK_QUEUE_NAME = "#{AWS_ACCESS}-created-chunk"
 
   AWS = Aws.new
